@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 200px;
+}
+
+
+
+
+/* .dropdown-menu{
+    float: right;
+    padding-right: 400px;
+    bottom: 40px;
+}
+ .topnav{
+     position: relative;
+     bottom:40px;
+     padding-left: 1050px;
+ }
+ h1{
+     bottom: 80px;
+ }
+ .container{
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+
+} */
