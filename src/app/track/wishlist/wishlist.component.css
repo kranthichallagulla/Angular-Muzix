@@ -1,6 +1,8 @@
-
-/* .container{
+.container{
+ 
     display: flex;
-    justify-content:space-evenly;
-    flex-wrap: wrap;
-} */
+     justify-content:space-evenly;
+     flex-wrap: wrap;
+      margin-bottom: 10vh;
+    
+ } 

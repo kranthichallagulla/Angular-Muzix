@@ -19,6 +19,7 @@ header{
     top:0;
     right: 0;
     left: 0;
+    height: 120px;
 }
 a{
     float: right;
@@ -29,3 +30,4 @@ a{
     right:30px;
 
 }
+

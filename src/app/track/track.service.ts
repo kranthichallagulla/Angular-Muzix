@@ -1,17 +1,22 @@
-import { Wishlist } from './wishlist';
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Track } from './track';
 import { Image } from './image';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { Artist } from './artist';
+
 
 @Injectable({
         providedIn: 'root'
     })
 export class TrackService {
+    @Input()
+    track: Track;
+    t1: String;
     trackobj: Track;
     imageObj: Image;
+    artistObj: Artist;
     id: number;
     tracks: Array<Track>;
     apiKey: String;
@@ -80,11 +85,9 @@ export class TrackService {
         return this.trackSubject;
       }
       deleteTrackFromWishList(track): BehaviorSubject<Array<Track>> {
-        console.log('Delete Operation');
         const id = track.trackId;
         console.log('id in service', id);
-        const url = this.springEndPoint + 'track/' + id;
-        console.log(url);
+        const url = this.springEndPoint + 'track' + `${id}`;
         this.http.delete(url, { responseType: 'text' }).subscribe(data => {});
         const index = this.tracks.indexOf(track);
         this.tracks.splice(index, 1);
@@ -98,4 +101,19 @@ export class TrackService {
         const url = this.springEndPoint + 'track' + `${id}`;
         return this.http.put(url, track, { observe: 'response' });
       }
+      filter(searchTerm: string) {
+        this.t1 = '{{ track.artist.name }}';
+        console.log('In service ', searchTerm);
+        const regx = `${searchTerm}`;
+        console.log('Regx', regx);
+        const results = this.tracks.filter(data => {
+          // tslint:disable-next-line:no-unused-expression
+          return data.artist.name.match(regx);
+          // return data.t1.match(regx);
+          // return data.artist.name.includes(searchTerm);
+        });
+        console.log('Filetred data', results);
+        this.trackSubject.next(results);
+      }
 }
+

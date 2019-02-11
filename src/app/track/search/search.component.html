@@ -1,3 +1,7 @@
-<p>
-  search works!
-</p>
+<mat-form-field class="form"appearance="legacy">
+  <mat-label class="label">Search Track</mat-label>
+  <input (keyup)="onKey($event)" matInput class="input">
+  <mat-icon matSuffix><i class="material-icons"> search
+      </i></mat-icon>
+  
+</mat-form-field>
